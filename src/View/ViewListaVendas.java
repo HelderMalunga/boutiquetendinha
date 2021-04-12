@@ -34,6 +34,7 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import static sun.net.www.http.HttpClient.New;
 
 /**
  *
@@ -100,7 +101,6 @@ public class ViewListaVendas extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/barralistadeVendas.png"))); // NOI18N
-        jLabel2.setPreferredSize(new java.awt.Dimension(1200, 36));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -172,14 +172,14 @@ public class ViewListaVendas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Código | Nome Cliente", "Código  Desc Produto", "Quantidade", "Valor Unitario", "Valor Total", "Desconto", "Data Venda"
+                "Código", "Código | Nome Cliente", "Código  Desc Produto", "Quantidade", "Valor Unitario", "Valor Total", "Desconto", "Data", "Hora"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -196,6 +196,9 @@ public class ViewListaVendas extends javax.swing.JFrame {
             jtfVenda.getColumnModel().getColumn(0).setMinWidth(50);
             jtfVenda.getColumnModel().getColumn(0).setPreferredWidth(50);
             jtfVenda.getColumnModel().getColumn(0).setMaxWidth(50);
+            jtfVenda.getColumnModel().getColumn(1).setMinWidth(180);
+            jtfVenda.getColumnModel().getColumn(1).setPreferredWidth(180);
+            jtfVenda.getColumnModel().getColumn(1).setMaxWidth(180);
         }
 
         jbExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/jbdelete.png"))); // NOI18N
@@ -368,7 +371,10 @@ public class ViewListaVendas extends javax.swing.JFrame {
        
        
        // tabela 
-             PdfPTable tabela=new PdfPTable(8);
+            int w[] = { 50, 50 };
+             PdfPTable tabela=new PdfPTable(9);
+
+             
              PdfPCell coluna1=new PdfPCell(new Paragraph("Cod Venda",FontFactory.getFont(FontFactory.TIMES,10,BaseColor.WHITE)));
              coluna1.setBackgroundColor(new BaseColor(27, 150, 120));
              
@@ -387,6 +393,10 @@ public class ViewListaVendas extends javax.swing.JFrame {
              coluna7.setBackgroundColor(new BaseColor(27, 150, 120));
              PdfPCell coluna8=new PdfPCell(new Paragraph("Data",FontFactory.getFont(FontFactory.TIMES,10,BaseColor.WHITE)));
              coluna8.setBackgroundColor(new BaseColor(27, 150, 120));
+             coluna8.setBackgroundColor(new BaseColor(27, 150, 120));
+             PdfPCell coluna9=new PdfPCell(new Paragraph("Hora",FontFactory.getFont(FontFactory.TIMES,10,BaseColor.WHITE)));
+             coluna9.setBackgroundColor(new BaseColor(27, 150, 120));
+             
              
              
 
@@ -399,6 +409,7 @@ public class ViewListaVendas extends javax.swing.JFrame {
              tabela.addCell(coluna6);
              tabela.addCell(coluna7);
              tabela.addCell(coluna8);
+             tabela.addCell(coluna9);
              
              
              for (ModelVenda modelVenda : listaModelVenda) {
@@ -409,7 +420,9 @@ public class ViewListaVendas extends javax.swing.JFrame {
              coluna5=new PdfPCell(new Paragraph(modelVenda.getValorLiquido()+""));
              coluna6=new PdfPCell(new Paragraph(modelVenda.getValorBruto()+""));
             coluna7=new PdfPCell(new Paragraph(modelVenda.getDesconto()+""));
-             coluna8=new PdfPCell(new Paragraph(modelVenda.getDataVenda()+""));
+             coluna8=new PdfPCell(new Paragraph(modelVenda.getDataVendaConvertida()+""));
+             coluna9=new PdfPCell(new Paragraph(modelVenda.getHoraVendaConvertida()+""));
+
             
              
              tabela.addCell(coluna1);
@@ -420,6 +433,8 @@ public class ViewListaVendas extends javax.swing.JFrame {
              tabela.addCell(coluna6);
             tabela.addCell(coluna7);
             tabela.addCell(coluna8);
+            tabela.addCell(coluna9);
+
              }
           documento.add(tabela);
           documento.close();
@@ -494,7 +509,8 @@ public class ViewListaVendas extends javax.swing.JFrame {
               listaModelVenda.get(i).getValorLiquido(),
               listaModelVenda.get(i).getValorBruto(),
               listaModelVenda.get(i).getDesconto(),
-              listaModelVenda.get(i).getDataVenda()
+              listaModelVenda.get(i).getDataVendaConvertida(),
+              listaModelVenda.get(i).getHoraVendaConvertida()
           });
        }
    }

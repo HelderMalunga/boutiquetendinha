@@ -133,23 +133,23 @@ public class DAOUsuario {
          return listaUsuarios;
     }
 
-    public boolean validarUsuarioDAO(String login ,String senha,String perfil)  { 
+    public String validarUsuarioDAO(String login ,String senha)  { 
         
         Session session= NewHibernateUtil.getSessionFactory().openSession();
         ModelUsuario modeloUsuario= (ModelUsuario) session.createCriteria(ModelUsuario.class)
                 .add(Restrictions.eq("login", login)).uniqueResult();
         if (modeloUsuario!=null) {
-            if (modeloUsuario.getSenha().equalsIgnoreCase(senha) && modeloUsuario.getPerfil().equalsIgnoreCase(perfil)) { 
+            if (modeloUsuario.getSenha().equalsIgnoreCase(senha)) { 
            
-                return true;
+                return modeloUsuario.getPerfil();
             } else { 
   
-                return false; 
+                return  "naoEncontrado"; 
             }
         } else { 
           
           
-            return false;
+            return "naoEncontrado";
         }
         
     }

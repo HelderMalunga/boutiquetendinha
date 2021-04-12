@@ -3,9 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Trabalho%20Semestral%20Java/ProjectoVendas/src/Model/ModelCliente.java</file>
-            <file>file:/F:/Trabalho%20Semestral%20Java/ProjectoVendas/src/View/ViewLogin.java</file>
-            <file>file:/F:/Trabalho%20Semestral%20Java/ProjectoVendas/src/Model/ModelVenda.java</file>
+            <file>file:/F:/projetos/github/boutique_tendinha/src/View/ViewListaVendas.java</file>
+            <file>file:/F:/projetos/github/boutique_tendinha/src/View/ViewClienteDeletado.java</file>
+            <file>file:/F:/projetos/github/boutique_tendinha/src/View/ViewTelaPrincipal.java</file>
+            <file>file:/F:/projetos/github/boutique_tendinha/src/View/ViewLogin.java</file>
+            <file>file:/F:/projetos/github/boutique_tendinha/src/View/ViewCliente.java</file>
+            <file>file:/F:/projetos/github/boutique_tendinha/src/Model/ModelCliente.java</file>
+            <file>file:/F:/projetos/github/boutique_tendinha/src/Model/ModelVenda.java</file>
+            <file>file:/F:/projetos/github/boutique_tendinha/src/Model/ModelUsuario.java</file>
+            <file>file:/F:/projetos/github/boutique_tendinha/src/Controller/ControllerCliente.java</file>
+            <file>file:/F:/projetos/github/boutique_tendinha/src/Controller/ControllerUsuario.java</file>
+            <file>file:/F:/projetos/github/boutique_tendinha/src/View/ViewVendas.java</file>
+            <file>file:/F:/projetos/github/boutique_tendinha/src/DAO/DAOUsuario.java</file>
+            <file>file:/F:/projetos/github/boutique_tendinha/src/DAO/DAOCliente.java</file>
+            <file>file:/F:/projetos/github/boutique_tendinha/src/DAO/DAOVenda.java</file>
         </group>
     </open-files>
 </project-private>

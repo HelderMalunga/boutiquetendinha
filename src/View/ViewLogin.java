@@ -25,7 +25,7 @@ public class ViewLogin extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         limparDadosLogin();
-        mudarOBackgroundComboboxPerfil();
+//        mudarOBackgroundComboboxPerfil();
     }  
      ControllerUsuario controllerUsuario=new ControllerUsuario();
     ModelUsuario modeloUsuario=new ModelUsuario();
@@ -50,8 +50,6 @@ public class ViewLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jtfSenha = new javax.swing.JPasswordField();
-        jLabel5 = new javax.swing.JLabel();
-        jcbPerfillog = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -136,17 +134,6 @@ public class ViewLogin extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel4.setText("Senha:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Perfil:");
-
-        jcbPerfillog.setForeground(new java.awt.Color(27, 150, 120));
-        jcbPerfillog.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Funcionario" }));
-        jcbPerfillog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbPerfillogActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -163,14 +150,12 @@ public class ViewLogin extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGap(38, 38, 38)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel5)
                                 .addComponent(jtfSenha)
                                 .addComponent(jtfLoginU)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jbEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                                    .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jcbPerfillog, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jlUser, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -189,15 +174,11 @@ public class ViewLogin extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jcbPerfillog, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(57, 57, 57))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jbCancelar, jbEntrar});
@@ -255,18 +236,27 @@ public class ViewLogin extends javax.swing.JFrame {
     private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarActionPerformed
         // TODO add your handling code here:
     //    viewUsuario.jcbPerfil.getSelectedItem();
+    String validar;  
+                   modeloUsuario.setLogin(this.jtfLoginU.getText());
+                   modeloUsuario.setSenha(String.valueOf(this.jtfSenha.getPassword()));
+    validar=controllerUsuario.validarUsuarioController(this.modeloUsuario.getLogin(),this.modeloUsuario.getSenha());
         if (jtfLoginU.getText().equalsIgnoreCase("") || jtfSenha.getPassword().equals(null)) { 
             this.setEnabled(false);
             new ViewUsuarioNaoExiste(this).setVisible(true);
-        }else
-      if(controllerUsuario.validarUsuarioController(jtfLoginU.getText(), String.valueOf(jtfSenha.getPassword()), (String) jcbPerfillog.getSelectedItem())){
-         modeloUsuario.setLogin(jtfLoginU.getText());
-         ViewTelaPrincipal.setUser_log(jtfLoginU.getText());   //pegar o usuario  
-          ViewTelaPrincipal vtp=new ViewTelaPrincipal((String) jcbPerfillog.getSelectedItem());
-          vtp.setVisible(true);
-          this.dispose();
-//        Progress p=new Progress();
-//        p.setVisible(true);  
+        }else if(!validar.equalsIgnoreCase("naoencontrado")){
+                if(validar.equalsIgnoreCase("Administrador")){
+                     modeloUsuario.setLogin(jtfLoginU.getText());
+                      ViewTelaPrincipal.setUser_log(jtfLoginU.getText());   //pegar o usuario  
+                 //ViewTelaPrincipal vtp=new ViewTelaPrincipal((String) jcbPerfillog.getSelectedItem());
+         
+         Progress p=new Progress();
+        p.setVisible(true);  
+          this.dispose();   
+                } else{
+                    new Viewview().setVisible(true);
+                }
+        
+ 
       }else { 
         this.setEnabled(false);
         new ViewDadosIncorrectos(this).setVisible(true);
@@ -276,10 +266,6 @@ public class ViewLogin extends javax.swing.JFrame {
       
       
     }//GEN-LAST:event_jbEntrarActionPerformed
-
-    private void jcbPerfillogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPerfillogActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbPerfillogActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,20 +306,18 @@ public class ViewLogin extends javax.swing.JFrame {
         this.jtfLoginU.setText("");
         this.jtfSenha.setText("");
     } 
-    private void mudarOBackgroundComboboxPerfil(){
-        this.jcbPerfillog.setBackground(Color.white);
-    }
+//    private void mudarOBackgroundComboboxPerfil(){
+//        this.jcbPerfillog.setBackground(Color.white);
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbEntrar;
-    public static javax.swing.JComboBox<String> jcbPerfillog;
     private javax.swing.JLabel jlUser;
     public javax.swing.JTextField jtfLoginU;
     private javax.swing.JPasswordField jtfSenha;

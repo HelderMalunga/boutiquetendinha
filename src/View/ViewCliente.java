@@ -46,6 +46,7 @@ public class ViewCliente extends javax.swing.JFrame {
     ControllerCliente controllerCliente=new ControllerCliente();
     ModelCliente modeloCliente=new ModelCliente();
     String salvarAlterar;
+    String a;
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -514,7 +515,7 @@ public class ViewCliente extends javax.swing.JFrame {
         int linha=jtClientes.getSelectedRow(); 
         try {
         int codigoCliente=Integer.parseInt(String.valueOf(this.jtClientes.getValueAt(linha, 0)));
-        modeloCliente.setIdCliente(codigoCliente); 
+        modeloCliente=controllerCliente.buscarClienteController(codigoCliente);
         //uimanager altera o tamanho da JOptionPane
         /**
          UIManager.put("OptionPane.minimumSize", new Dimension(372, 194));
@@ -522,7 +523,10 @@ public class ViewCliente extends javax.swing.JFrame {
          UIManager.put("OptionPane.foreground", Color.white);
         int confirmarDeletar=JOptionPane.showConfirmDialog(null, "TEM CERTEZA EM REMOVER O CLIENTE?","ATENÇÃO",JOptionPane.YES_OPTION);*/
        //   if(confirmarDeletar==JOptionPane.YES_OPTION){
+                    modeloCliente.setEstado("eliminado");
               if (controllerCliente.excluirClienteController(modeloCliente)) { 
+                  modeloCliente.setEstado("eliminado");
+
                   this.setEnabled(false);
              new ViewDeletado(this).setVisible(true);
              preencherTabela();
@@ -559,6 +563,7 @@ public class ViewCliente extends javax.swing.JFrame {
           this.jcbProvincia.setSelectedItem(modeloCliente.getProvincia());
           this.jtfNuit.setText(modeloCliente.getNuit());
           this.jtfTelefone.setText(modeloCliente.getTelefone());
+          
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -619,11 +624,19 @@ public class ViewCliente extends javax.swing.JFrame {
     } 
     
     private void preencherTabela(){
-        listaModeloCliente=controllerCliente.listarTodosClientesController();
+      listaModeloCliente=controllerCliente.listarTodosClientesController();
+          //ModelCliente modeloCliente =new ModelCliente();
         DefaultTableModel modelo=(DefaultTableModel)jtClientes.getModel();
         modelo.setRowCount(0);
+
         for (int i = 0; i < listaModeloCliente.size(); i++) {
-           modelo.addRow(new Object[]{
+              
+            // if(modeloCliente.getEstado()!=null){
+
+      if(listaModeloCliente.get(i).getEstado().equalsIgnoreCase("gravado")){
+              
+
+               modelo.addRow(new Object[]{
                listaModeloCliente.get(i).getIdCliente(),
                listaModeloCliente.get(i).getNome(),
                listaModeloCliente.get(i).getApelido(),
@@ -632,9 +645,14 @@ public class ViewCliente extends javax.swing.JFrame {
                listaModeloCliente.get(i).getCidade(),
                listaModeloCliente.get(i).getProvincia(),
                listaModeloCliente.get(i).getNuit(),
-               listaModeloCliente.get(i).getTelefone()
+               listaModeloCliente.get(i).getTelefone(),
+               
            });
-        }
+             }
+         // }  
+            
+       } 
+        
     }
     
     private void habilitarOuDesabilitar (boolean condicao){
@@ -679,6 +697,9 @@ public class ViewCliente extends javax.swing.JFrame {
         modeloCliente.setProvincia(String.valueOf(this.jcbProvincia.getSelectedItem()));
         modeloCliente.setNuit(this.jtfNuit.getText());
         modeloCliente.setTelefone(this.jtfTelefone.getText());
+        modeloCliente.setEstado("gravado");
+
+        
         
         if(jtfNome.getText().isEmpty() || jtfApelido.getText().isEmpty() || jtfEndereco.getText().isEmpty() || jcbBairro.getSelectedItem().equals(null) || jcbCidade.getSelectedItem().equals(null) || jcbProvincia.getSelectedItem().equals(null)){
             this.setEnabled(false);

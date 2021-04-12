@@ -34,8 +34,8 @@ public class ControllerUsuario {
         return this.daoUsuario.listarTodosUsuariosDAO();
     }
 
-    public boolean validarUsuarioController(String pLogin , String pSenha,String perfil) { 
-     return this.daoUsuario.validarUsuarioDAO(pLogin,pSenha,perfil);
+    public String validarUsuarioController(String pLogin , String pSenha) { 
+     return this.daoUsuario.validarUsuarioDAO(pLogin,pSenha);
     } 
     
 }

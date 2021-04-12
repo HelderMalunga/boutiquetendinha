@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author LVIS MACUA
+ * @author LVIS MACUA Helder
  */ 
 @Entity 
 @Table(name = "tbl_cliente")
@@ -38,11 +38,13 @@ public class ModelCliente {
     private String nuit;
     @Column(name = "cli_telefone")
     private String telefone;
+    @Column(name = "cli_estado")
+    private String estado;
 
     public ModelCliente() {
     }
 
-    public ModelCliente(String nome, String apelido, String endereco, String bairro, String cidade, String provincia, String nuit, String telefone) {
+    public ModelCliente(String nome, String apelido, String endereco, String bairro, String cidade, String provincia, String nuit, String telefone, String estado) {
         this.nome = nome;
         this.apelido = apelido;
         this.endereco = endereco;
@@ -51,7 +53,11 @@ public class ModelCliente {
         this.provincia = provincia;
         this.nuit = nuit;
         this.telefone = telefone;
+        this.estado = estado;
     }
+    
+
+ 
 
     public int getIdCliente() {
         return idCliente;
@@ -124,11 +130,24 @@ public class ModelCliente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+    
 
     @Override
     public String toString() {
         return idCliente + "   " + nome + " " + apelido;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+  
+
+   
     
     
     

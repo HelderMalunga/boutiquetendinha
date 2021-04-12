@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -39,6 +41,8 @@ public class ModelVenda {
     private double  valorBruto;
     @Column(name = "ven_desconto")
     private double desconto;
+    @Column(name = "ven_hora")
+    private Date horaVenda;
     
     
     /**
@@ -78,6 +82,7 @@ public class ModelVenda {
     public int getIdVenda() {
         return idVenda;
     }
+    
 
     public void setIdVenda(int idVenda) {
         this.idVenda = idVenda;
@@ -93,6 +98,14 @@ public class ModelVenda {
 
     public Date getDataVenda() {
         return dataVenda;
+    }
+    
+    public String getDataVendaConvertida() {
+ 
+        DateFormat dateFormat = new SimpleDateFormat("dd / MM / yyyy ");
+        String dataFormatada = dateFormat.format(this.dataVenda);
+        return dataFormatada;
+       
     }
 
     public void setDataVenda(Date dataVenda) {
@@ -139,11 +152,27 @@ public class ModelVenda {
     public void setProdutos(ModeloProduto produtos) {
         this.produtos = produtos;
     }
+    public String getHoraVendaConvertida() {
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        String dataFormatada = dateFormat.format(this.horaVenda);
+        return dataFormatada;
+    }
+    
+    public Date getHoraVenda() {
+        return horaVenda;
+    }
+
+    public void setHoraVenda(Date horaVenda) {
+        this.horaVenda = horaVenda;
+    }
 
     @Override
     public String toString() {
         return idVenda + " " + cliente ;
     }
+
+    
+     
 
    
     

@@ -444,7 +444,7 @@ public class ViewVendas extends javax.swing.JFrame {
         // TODO add your handling code here:
         //DefaultTableModel modelo=(DefaultTableModel) this.jtVendas.getModel();
          
-            
+           modeloVenda.setQuantidade(Integer.parseInt(this.jtfQuantidade.getText()));
         if( this.jtfQuantidade.getText().equalsIgnoreCase("")){ 
             this.setEnabled(false);
             new ViewVendaNaoEfectuada(this).setVisible(true);
@@ -452,6 +452,7 @@ public class ViewVendas extends javax.swing.JFrame {
          modeloVenda.setCliente((ModelCliente) this.jcbClientess.getSelectedItem());
          modeloVenda.setProdutos((ModeloProduto) this.jcbProdutoss.getSelectedItem());
          modeloVenda.setDataVenda(new Date()); 
+         modeloVenda.setHoraVenda(new Date());
          modeloVenda.setValorLiquido(Double.parseDouble(this.jtfValorTota.getText()));
          modeloVenda.setValorBruto(Double.parseDouble(this.jtfValorTota.getText())+Double.parseDouble(this.jtfDesconto.getText()));
          modeloVenda.setDesconto(Double.parseDouble(this.jtfDesconto.getText()));   

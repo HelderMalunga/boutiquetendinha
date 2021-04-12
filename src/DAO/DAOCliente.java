@@ -53,9 +53,8 @@ public class DAOCliente {
         try { 
             session=NewHibernateUtil.getSessionFactory().openSession();
             Transaction transaction=session.beginTransaction();
-            session.delete(pModelCliente);
-            transaction.commit();
-            
+           session.update(pModelCliente);
+            transaction.commit();  
         } catch (Exception e) { 
             e.printStackTrace();
             return false;
@@ -89,11 +88,14 @@ public class DAOCliente {
       }
       return listaClientes;
   }
+  
+  
   /**
    * buscar um cliente na base de dados
    * @param idCliente
    * @return 
    */
+    
   public ModelCliente  buscarClienteDAO(int idCliente){
       ModelCliente modeloCliente=null;
       Session session=null;
@@ -112,6 +114,25 @@ public class DAOCliente {
       
       return modeloCliente;
   }
+//  
+//  public ModelCliente  buscarClienteDAO(int idCliente){
+//      ModelCliente modeloCliente=null;
+//      Session session=null;
+//      try {
+//          session=NewHibernateUtil.getSessionFactory().openSession();
+//          Transaction transaction=session.beginTransaction();
+//          modeloCliente=(ModelCliente) session.get(ModelCliente.class, idCliente);
+//          transaction.commit();
+//      } catch (Exception e) { 
+//          e.printStackTrace();
+//      }finally{
+//          if (session!=null) {
+//              session.close();
+//          }
+//      }
+//      
+//      return modeloCliente;
+//  }
   
   public boolean editarClienteDAO(ModelCliente pModelCliente){
       Session session=null;

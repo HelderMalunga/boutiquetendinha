@@ -21,21 +21,13 @@ public class ViewTelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form ViewTelaPrincipal
      */
-    public ViewTelaPrincipal(String condicao) {
+    public ViewTelaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
         jlUsuario.setText(this.getUser_log());
-        jlcondicao.setText(condicao);
-        if (condicao.equalsIgnoreCase("Funcionario")) {
-            this.jbUsuarios.setEnabled(false);
-            this.jbProdutos.setEnabled(false);
-            this.jbRelatorioVendas.setEnabled(false);
-            this.jMenuItemProduto.setEnabled(false);
-            this.jMenuItemUsuario.setEnabled(false);
-            this.jMenuRelatorio.setEnabled(false);
-        }
+
         
         
     } 
@@ -54,9 +46,7 @@ public class ViewTelaPrincipal extends javax.swing.JFrame {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
 
-    private ViewTelaPrincipal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
      
       
@@ -91,6 +81,7 @@ public class ViewTelaPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItemVendas = new javax.swing.JMenuItem();
         jMenuRelatorio = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -283,6 +274,15 @@ public class ViewTelaPrincipal extends javax.swing.JFrame {
 
         jMenuRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pdff.png"))); // NOI18N
         jMenuRelatorio.setText("Relatórios");
+
+        jMenuItem3.setText("jMenuItem3");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenuRelatorio.add(jMenuItem3);
+
         jMenuBar1.add(jMenuRelatorio);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/idioma.png"))); // NOI18N
@@ -441,6 +441,11 @@ public class ViewTelaPrincipal extends javax.swing.JFrame {
        new ViewListaVendas(this).setVisible(true);
     }//GEN-LAST:event_jbRelatorioVendasActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        new ViewClienteDeletado(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -491,6 +496,7 @@ public class ViewTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItemCliente;

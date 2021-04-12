@@ -79,7 +79,8 @@ public class Progress extends javax.swing.JFrame {
         }catch (InterruptedException ex) {
                 Logger.getLogger(Progress.class.getName()).log(Level.SEVERE, null, ex);
             }
-      //  principal.setVisible(true);
+        ViewTelaPrincipal principal=new ViewTelaPrincipal();
+       principal.setVisible(true);
         
         }
     
