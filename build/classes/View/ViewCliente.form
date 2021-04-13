@@ -188,20 +188,18 @@
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jtfNuit" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jtfTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jcbProvincia" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jtfPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jtfNuit" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jtfTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jcbProvincia" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jtfPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jbPesquisar" min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="jbPesquisar" min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="41" max="32767" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="281" max="-2" attributes="0"/>
@@ -368,6 +366,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfNome">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="*"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>

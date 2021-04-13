@@ -50,7 +50,7 @@ public class DAOUsuario {
           try {
             session=NewHibernateUtil.getSessionFactory().openSession();
             Transaction transaction=session.beginTransaction();
-            session.delete(pModelUsuario);
+            session.update(pModelUsuario);
             transaction.commit();
         } catch (Exception e) {  
             e.printStackTrace();
@@ -138,19 +138,26 @@ public class DAOUsuario {
         Session session= NewHibernateUtil.getSessionFactory().openSession();
         ModelUsuario modeloUsuario= (ModelUsuario) session.createCriteria(ModelUsuario.class)
                 .add(Restrictions.eq("login", login)).uniqueResult();
-        if (modeloUsuario!=null) {
-            if (modeloUsuario.getSenha().equalsIgnoreCase(senha)) { 
+        if (modeloUsuario!=null) {   
+            
+            if(modeloUsuario.getEstado().equalsIgnoreCase("gravado")){
+                if (modeloUsuario.getSenha().equalsIgnoreCase(senha)) { 
            
                 return modeloUsuario.getPerfil();
             } else { 
   
                 return  "naoEncontrado"; 
+            } 
+            }else{
+            
             }
+           
         } else { 
           
           
-            return "naoEncontrado";
+            
         }
+       return "naoEncontrado";
         
     }
     

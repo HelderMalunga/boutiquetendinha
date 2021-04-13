@@ -22,6 +22,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class ViewProduto extends javax.swing.JFrame {
     private ViewTelaPrincipal viewAnterior;
+    private ViewTelaPrincipalComum viewAnteriorComum;
     /** Creates new form ViewUsuario */  
     
     public String salvarAlterar;  
@@ -39,6 +40,10 @@ public class ViewProduto extends javax.swing.JFrame {
     public ViewProduto(ViewTelaPrincipal viewAnterior){
         this();
         this.viewAnterior=viewAnterior;
+    } 
+    public ViewProduto(ViewTelaPrincipalComum viewAnteriorComum){
+        this();
+        this.viewAnteriorComum=viewAnteriorComum;
     }
     
      ControllerProduto controllerProduto=new ControllerProduto(); 
@@ -431,12 +436,12 @@ public class ViewProduto extends javax.swing.JFrame {
                                 .addComponent(jtfEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jtfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel12)
                                 .addComponent(jtfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -484,7 +489,7 @@ public class ViewProduto extends javax.swing.JFrame {
         final TableRowSorter<TableModel> classificador=new TableRowSorter<>(modelo);
         this.jtProdutos.setRowSorter(classificador);
         String texto=this.jtfPesquisar.getText();
-        classificador.setRowFilter(RowFilter.regexFilter(texto, 1));
+        classificador.setRowFilter(RowFilter.regexFilter(texto.toUpperCase(), 1));
     }//GEN-LAST:event_jbPesquisarActionPerformed
 
     private void jcbSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbSexoActionPerformed
@@ -494,6 +499,7 @@ public class ViewProduto extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         viewAnterior.setEnabled(true);
+        viewAnteriorComum.setEnabled(true);
     }//GEN-LAST:event_formWindowClosed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
@@ -552,8 +558,10 @@ public class ViewProduto extends javax.swing.JFrame {
         int linha=this.jtProdutos.getSelectedRow();
         try {
          int codigoProduto=Integer.parseInt(String.valueOf(this.jtProdutos.getValueAt(linha, 0)));
-         modeloProduto.setIdProduto(codigoProduto);
+         modeloProduto=controllerProduto.buscarProdutoController(codigoProduto);
+         modeloProduto.setEstado("eliminado");
          if(controllerProduto.excluirProdutoController(modeloProduto)){ 
+             modeloProduto.setEstado("eliminado");
              this.setEnabled(false);
              new ViewDeletadoProduto(this).setVisible(true);
              preencherTabelaProduto();
@@ -611,6 +619,7 @@ public class ViewProduto extends javax.swing.JFrame {
         DefaultTableModel modelo=(DefaultTableModel) this.jtProdutos.getModel();
         modelo.setRowCount(0);
         for (int i = 0; i < listarModeloProdutos.size(); i++) {
+         if(listarModeloProdutos.get(i).getEstado().equalsIgnoreCase("gravado")){
             modelo.addRow(new Object[]{
                 listarModeloProdutos.get(i).getIdProduto(),
                 listarModeloProdutos.get(i).getDescricao(),
@@ -622,6 +631,7 @@ public class ViewProduto extends javax.swing.JFrame {
                 
                 listarModeloProdutos.get(i).getValor()
             });
+         }
         }
        // DefaultTableModel modelo= 
     }
@@ -721,12 +731,13 @@ public class ViewProduto extends javax.swing.JFrame {
         }else{  
        // modeloProduto.setValor(100.25);
         modeloProduto.setValor(Double.parseDouble(this.jtfValor.getText()));    
-        modeloProduto.setDescricao(this.jtfDescricao.getText());
-        modeloProduto.setSexo(String.valueOf(this.jcbSexo.getSelectedItem()));
-        modeloProduto.setCodigoDeBarras(this.jtfCodigoBarras.getText());
-        modeloProduto.setPaisDeOrigem(String.valueOf(this.jcbPaisOrigem.getSelectedItem()));
-        modeloProduto.setFornecedor(this.jtfFornecedor.getText());
+        modeloProduto.setDescricao(this.jtfDescricao.getText().toUpperCase());
+        modeloProduto.setSexo((String.valueOf(this.jcbSexo.getSelectedItem())).toUpperCase());
+        modeloProduto.setCodigoDeBarras(this.jtfCodigoBarras.getText().toUpperCase());
+        modeloProduto.setPaisDeOrigem((String.valueOf(this.jcbPaisOrigem.getSelectedItem())).toUpperCase());
+        modeloProduto.setFornecedor(this.jtfFornecedor.getText().toUpperCase());
         modeloProduto.setEstoque(Integer.parseInt(this.jtfEstoque.getText())); 
+        modeloProduto.setEstado("gravado");
           
         
         if(controllerProduto.salvarProdutoController(modeloProduto)>0){ 
@@ -751,11 +762,11 @@ public class ViewProduto extends javax.swing.JFrame {
         try {
             
         
-        modeloProduto.setDescricao(this.jtfDescricao.getText());
-        modeloProduto.setSexo(String.valueOf(this.jcbSexo.getSelectedItem()));
-        modeloProduto.setCodigoDeBarras(this.jtfCodigoBarras.getText());
-        modeloProduto.setPaisDeOrigem(String.valueOf(this.jcbPaisOrigem.getSelectedItem()));
-        modeloProduto.setFornecedor(this.jtfFornecedor.getText());
+        modeloProduto.setDescricao(this.jtfDescricao.getText().toUpperCase());
+        modeloProduto.setSexo((String.valueOf(this.jcbSexo.getSelectedItem())).toUpperCase());
+        modeloProduto.setCodigoDeBarras(this.jtfCodigoBarras.getText().toUpperCase());
+        modeloProduto.setPaisDeOrigem((String.valueOf(this.jcbPaisOrigem.getSelectedItem())).toUpperCase());
+        modeloProduto.setFornecedor(this.jtfFornecedor.getText().toUpperCase());
         modeloProduto.setEstoque(Integer.parseInt(this.jtfEstoque.getText())); 
         modeloProduto.setValor(Double.parseDouble(this.jtfValor.getText()));
         if(this.jtfDescricao.getText().isEmpty() || this.jcbSexo.getSelectedItem().equals("") ||this.jtfCodigoBarras.getText().isEmpty() ||

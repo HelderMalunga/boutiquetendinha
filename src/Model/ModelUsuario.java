@@ -34,6 +34,8 @@ public class  ModelUsuario {
     private String confirmarSenha;
     @Column(name = "usu_perfil")
     private  String perfil; 
+    @Column(name = "cli_estado")
+    private String estado;
 
     public  ModelUsuario() {
     }
@@ -46,6 +48,8 @@ public class  ModelUsuario {
         this.perfil = perfil;
         this.confirmarSenha=confirmarSenha;
     }
+    
+    
     
 
     public int getIdUsuario() {
@@ -103,6 +107,14 @@ public class  ModelUsuario {
 
     public void setConfirmarSenha(String confirmarSenha) {
         this.confirmarSenha = confirmarSenha;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
     

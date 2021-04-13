@@ -24,10 +24,11 @@ import javax.swing.table.TableRowSorter;
  */
 public class ViewClienteDeletado extends javax.swing.JFrame {
      private ViewTelaPrincipal viewAnterior;
+      private ViewTelaPrincipalComum viewAnteriorComum;
     /** Creates new form ViewUsuario */
     private ViewClienteDeletado() {
         initComponents();
-        
+         setLocation(365,180);
         preencherTabela();
         
         
@@ -35,7 +36,11 @@ public class ViewClienteDeletado extends javax.swing.JFrame {
         
     }   
     
-    
+      public ViewClienteDeletado(ViewTelaPrincipalComum viewAnteriorcComum){
+        this();
+        this.viewAnteriorComum=viewAnteriorComum;
+        
+    } 
     
     public ViewClienteDeletado(ViewTelaPrincipal viewAnterior){
         this();
@@ -98,7 +103,7 @@ public class ViewClienteDeletado extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sidebarCliente.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dadosde.png"))); // NOI18N
 
         jPanel4.setBackground(new java.awt.Color(164, 164, 164));
 
@@ -218,19 +223,18 @@ public class ViewClienteDeletado extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jtfPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel12))
-                            .addComponent(jbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71))))
+                                .addComponent(jLabel12)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1)
+                        .addGap(62, 62, 62)))
+                .addGap(9, 9, 9))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,6 +269,7 @@ public class ViewClienteDeletado extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         viewAnterior.setEnabled(true);
+        viewAnteriorComum.setEnabled(true);
         
     }//GEN-LAST:event_formWindowClosed
 

@@ -8,8 +8,10 @@ package View;
 import Controller.ControllerUsuario;
 import Model.ModelUsuario;
 import java.awt.Color;
+import java.util.List;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,6 +31,7 @@ public class ViewLogin extends javax.swing.JFrame {
     }  
      ControllerUsuario controllerUsuario=new ControllerUsuario();
     ModelUsuario modeloUsuario=new ModelUsuario();
+    List<ModelUsuario> listaModelUsuario;
    
    
     /**
@@ -154,7 +157,7 @@ public class ViewLogin extends javax.swing.JFrame {
                                 .addComponent(jtfLoginU)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jbEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
                                     .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
@@ -166,19 +169,22 @@ public class ViewLogin extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jlUser)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfLoginU, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(jbEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jbCancelar, jbEntrar});
@@ -196,8 +202,9 @@ public class ViewLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1))
         );
 
         pack();
@@ -243,7 +250,8 @@ public class ViewLogin extends javax.swing.JFrame {
         if (jtfLoginU.getText().equalsIgnoreCase("") || jtfSenha.getPassword().equals(null)) { 
             this.setEnabled(false);
             new ViewUsuarioNaoExiste(this).setVisible(true);
-        }else if(!validar.equalsIgnoreCase("naoencontrado")){
+        }else if(!validar.equalsIgnoreCase("naoencontrado")){ 
+           
                 if(validar.equalsIgnoreCase("Administrador")){
                      modeloUsuario.setLogin(jtfLoginU.getText());
                       ViewTelaPrincipal.setUser_log(jtfLoginU.getText());   //pegar o usuario  
@@ -253,10 +261,10 @@ public class ViewLogin extends javax.swing.JFrame {
         p.setVisible(true);  
           this.dispose();   
                 } else{
-                    new Viewview().setVisible(true);
-                }
-        
- 
+                   ProgressComum o=new ProgressComum();
+        o.setVisible(true);  
+          this.dispose();  
+               }
       }else { 
         this.setEnabled(false);
         new ViewDadosIncorrectos(this).setVisible(true);
@@ -266,6 +274,7 @@ public class ViewLogin extends javax.swing.JFrame {
       
       
     }//GEN-LAST:event_jbEntrarActionPerformed
+     
 
     /**
      * @param args the command line arguments

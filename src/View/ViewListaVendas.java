@@ -81,8 +81,6 @@ public class ViewListaVendas extends javax.swing.JFrame {
         jbSair = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtfVenda = new javax.swing.JTable();
-        jbExcluir = new javax.swing.JButton();
-        jbEditar = new javax.swing.JButton();
         jbImprimir = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jtfPesquisa = new javax.swing.JTextField();
@@ -201,30 +199,6 @@ public class ViewListaVendas extends javax.swing.JFrame {
             jtfVenda.getColumnModel().getColumn(1).setMaxWidth(180);
         }
 
-        jbExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/jbdelete.png"))); // NOI18N
-        jbExcluir.setBorder(null);
-        jbExcluir.setBorderPainted(false);
-        jbExcluir.setContentAreaFilled(false);
-        jbExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbExcluir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/jbdeletar22.png"))); // NOI18N
-        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbExcluirActionPerformed(evt);
-            }
-        });
-
-        jbEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/jbEditar_1.png"))); // NOI18N
-        jbEditar.setBorder(null);
-        jbEditar.setBorderPainted(false);
-        jbEditar.setContentAreaFilled(false);
-        jbEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbEditar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/jbeditar22.png"))); // NOI18N
-        jbEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbEditarActionPerformed(evt);
-            }
-        });
-
         jbImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/relpdf.png"))); // NOI18N
         jbImprimir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 255)));
         jbImprimir.setBorderPainted(false);
@@ -258,10 +232,6 @@ public class ViewListaVendas extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
@@ -286,19 +256,16 @@ public class ViewListaVendas extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(52, 52, 52)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jtfPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel12))
-                            .addComponent(jbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel12)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbImprimir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jbImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24))))
         );
 
@@ -331,24 +298,6 @@ public class ViewListaVendas extends javax.swing.JFrame {
         viewAnterior.setEnabled(true);
         
     }//GEN-LAST:event_formWindowClosed
-
-    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-        // TODO add your handling code here:
-       
-      
-    }//GEN-LAST:event_jbExcluirActionPerformed
-
-    private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
-        // TODO add your handling code here:
-    
-      
-       
-
-//String resposta = (String)JOptionPane.showInputDialog(null,"Edição de título:", "Editar Título",JOptionPane.PLAIN_MESSAGE, null,null,"Título");
-        
-        
-        
-    }//GEN-LAST:event_jbEditarActionPerformed
 
     private void jbImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbImprimirActionPerformed
         // TODO add your handling code here:
@@ -528,8 +477,6 @@ public class ViewListaVendas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbEditar;
-    private javax.swing.JButton jbExcluir;
     private javax.swing.JButton jbImprimir;
     private javax.swing.JButton jbPesquisar;
     private javax.swing.JButton jbSair;

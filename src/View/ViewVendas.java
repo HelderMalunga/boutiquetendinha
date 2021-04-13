@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ViewVendas extends javax.swing.JFrame {
     private ViewTelaPrincipal viewAnterior;
+    private ViewTelaPrincipal viewAnteriorComum;
     /** Creates new form ViewUsuario */
     private ViewVendas() {
         initComponents();
@@ -36,6 +37,10 @@ public class ViewVendas extends javax.swing.JFrame {
     public ViewVendas(ViewTelaPrincipal viewAnterior){
         this();
         this.viewAnterior=viewAnterior;
+    } 
+    public ViewVendas(ViewTelaPrincipalComum viewAnteriorComum){
+        this();
+        this.viewAnteriorComum=this.viewAnteriorComum;
     } 
     /**
      * Cliente
@@ -399,6 +404,7 @@ public class ViewVendas extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         viewAnterior.setEnabled(true);
+        viewAnteriorComum.setEnabled(true);
     }//GEN-LAST:event_formWindowClosed
 
     private void jbAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAdicionarActionPerformed

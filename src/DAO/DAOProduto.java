@@ -42,7 +42,7 @@ public class DAOProduto {
         try {
             session=NewHibernateUtil.getSessionFactory().openSession();
             Transaction transaction=session.beginTransaction();
-            session.delete(pModeloProduto);
+            session.update(pModeloProduto);
             transaction.commit();
         } catch (Exception e) {  
             e.printStackTrace(); 

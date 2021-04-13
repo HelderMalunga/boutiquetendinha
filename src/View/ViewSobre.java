@@ -23,6 +23,11 @@ public class ViewSobre extends javax.swing.JFrame {
         this();
         this.viewAnterior=viewAnterior;
     }
+    ViewTelaPrincipalComum viewAnteriorComum;
+    public ViewSobre(ViewTelaPrincipalComum viewAnteriorComum ){
+        this();
+        this.viewAnteriorComum =viewAnteriorComum ;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,6 +109,7 @@ public class ViewSobre extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         this.viewAnterior.setEnabled(true);
+        this.viewAnteriorComum.setEnabled(true);
     }//GEN-LAST:event_formWindowClosed
 
     /**

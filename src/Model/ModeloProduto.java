@@ -38,6 +38,8 @@ public class ModeloProduto {
     private int estoque;
     @Column(name = "pro_valor")
     private double valor;  
+    @Column(name = "cli_estado")
+    private String estado;
     
     /**
      * @Helder Macuácua 
@@ -126,6 +128,14 @@ public class ModeloProduto {
     @Override
     public String toString() {
         return  idProduto + "   "+ descricao ;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
     
